@@ -10,7 +10,9 @@ router.get('/users', controller.users.get);
 
 router.post('/users', controller.users.post);
 
-router.get('/a', controller.messages.get);
+// newly added route
+router.post('/rooms', controller.rooms.post);
+// router.get('/a', controller.messages.get);
 
 
 module.exports = router;

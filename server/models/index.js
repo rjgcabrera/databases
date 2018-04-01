@@ -93,8 +93,9 @@ module.exports = {
       });
     },
     post: function(room) {
+      console.log('NEW ROOM IN MODELO: ', room);
       return new Promise((resolve, reject) => {
-        var query = `INSERT INTO rooms (name) VALUES ('${room}')`;
+        var queryStr = `INSERT INTO rooms (name) VALUES ('${room.roomname}')`;
 
         db.query(queryStr, (err, data) => {
           if (err) {

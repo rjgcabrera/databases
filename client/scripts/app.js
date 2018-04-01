@@ -97,6 +97,8 @@ var app = {
     });
   },
 
+  // --------------------------------------
+
   sendUser: function(user) {
      app.startSpinner();
      console.log('Current user: ', JSON.stringify(user));
@@ -115,6 +117,7 @@ var app = {
      });
    },
 
+// ----------------------------------------
 
   clearMessages: function() {
     app.$chats.html('');
@@ -222,11 +225,33 @@ var app = {
         // Set as the current room
         app.roomname = roomname;
 
-        // Add the room to the menu
-        app.renderRoom(roomname);
+        // ----------------------------------
 
-        // Select the menu option
-        app.$roomSelect.val(roomname);
+        $.ajax({
+          url: app.server + 'classes/rooms',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({'roomname': app.roomname}),
+          success: function (data) {
+            //app.fetch();
+            // Add the room to the menu
+            app.renderRoom(roomname);
+
+            // Select the menu option
+            app.$roomSelect.val(roomname);
+          },
+          error: function (error) {
+            console.error('chatterbox: Failed to send username', error);
+          }
+        });
+
+        // ----------------------------------
+
+        // // Add the room to the menu
+        // app.renderRoom(roomname);
+        //
+        // // Select the menu option
+        // app.$roomSelect.val(roomname);
       }
     } else {
       app.startSpinner();

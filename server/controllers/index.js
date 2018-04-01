@@ -57,7 +57,8 @@ module.exports = {
         });
     },
     post: function (req, res) {
-      models.users.post(req.body)
+      console.log('NEW ROOM IN CONTROLLA: ', req.body);
+      models.rooms.post(req.body)
         .then((data) => {
           res.send();
         }).catch((err) => {
